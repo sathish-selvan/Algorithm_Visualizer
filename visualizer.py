@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import random
 from bubblesort import bubble_sort
+from quicksort import main
 
 
 root = Tk()
@@ -53,8 +54,12 @@ def generate():
 
 def startAlgorithm():
     global data
+    sorting = algMenu.get()
     time_taken = speedScale.get()
-    bubble_sort(data, draw_data, time_taken)
+    if sorting == "Bubble sort":
+         bubble_sort(data, draw_data, time_taken)
+    elif sorting == "Quick sort":
+        main(data,0,len(data)-1,draw_data,time_taken)
 
     
 
@@ -67,7 +72,7 @@ canvas.grid(row=1,column=0,padx=10,pady=5)
 
 #row 0
 Label(UI_frame, text="Algorithm: ", bg="grey").grid(row=0,column=0,padx=5,pady=5, sticky=W)
-algMenu =ttk.Combobox(UI_frame,textvariable=selected_alg,values=["bubble sort"])
+algMenu =ttk.Combobox(UI_frame,textvariable=selected_alg,values=["Bubble sort", "Quick sort"])
 algMenu.grid(row=0, column=1, padx=5, pady=5)
 algMenu.current(0)
 
